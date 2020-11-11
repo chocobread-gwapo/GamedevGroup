@@ -5,5 +5,5 @@
 
 # Jimenez, Jozua E.
 # Villalba, Sophie Angela O.
-# Lacerna, Angelica
+# Lacerna, Angelica B.
 # Balignasay, Chenille
