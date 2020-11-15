@@ -1,6 +1,8 @@
 
 push = require 'push'
 
+Class =  require 'class'
+
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 
