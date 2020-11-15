@@ -68,10 +68,8 @@ function love.keypressed(key)
             gameState = 'play'
         else
             gameState = 'start'
-            ballx = VIRTUAL_WIDTH / 2 - 2
-            bally = VIRTUAL_HEIGHT / 2 - 2
-            balldx = math.random(2) == 1 and 100 or -100
-            balldy = math.random(-50, 50) * 1.5
+            
+            ball:reset()
         end
     end
 end
