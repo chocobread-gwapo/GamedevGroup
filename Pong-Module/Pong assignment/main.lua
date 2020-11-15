@@ -52,10 +52,11 @@ function love.update(dt)
     end
 
     if gameState == 'play' then
-        ballx = ballx + balldx * dt
-        bally = bally + balldy * dt
+        ball:update(dt)        
     end
 
+    player1:update(dt)
+    player2:update(dt)
 end
 
 function love.keypressed(key)
