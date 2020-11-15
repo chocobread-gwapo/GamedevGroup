@@ -87,15 +87,10 @@ function love.draw()
         love.graphics.printf('Playing!', 0, 20, VIRTUAL_WIDTH, 'center')
     end
 
-    love.graphics.setFont(scoreFont)
-    love.graphics.print(tostring(player1score), VIRTUAL_WIDTH / 2 - 50, VIRTUAL_HEIGHT / 3)
-    love.graphics.print(tostring(player2score), VIRTUAL_WIDTH / 2 + 50, VIRTUAL_HEIGHT / 3)
+    player1:render()
+    player2:render()
     
-    love.graphics.rectangle('fill', 10, player1y, 5, 20)
-
-    love.graphics.rectangle('fill', VIRTUAL_WIDTH - 10, player2y, 5, 20)
-
-    love.graphics.circle('fill', ballx, bally, 4, 6)
+    ball:render()
 
     push:apply('end')
 end
