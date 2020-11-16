@@ -77,7 +77,9 @@ function love.update(dt)
         player2Score = player2Score + 1
         ball:reset()
         gameState = 'start'
-    elseif ball.x > VIRTUAL_WIDTH then
+    end
+
+    if ball.x > VIRTUAL_WIDTH then
         servingPlayer = 2
         player1Score = player1Score + 1
         ball:reset()
