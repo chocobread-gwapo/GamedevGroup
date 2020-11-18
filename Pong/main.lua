@@ -29,6 +29,9 @@ function love.load()
 
     player1Score = 0
     player2Score = 0
+
+    servingPlayer = 1
+
     player1 = Paddle(10, 30, 5, 20)
     player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 30, 5, 20)
 
@@ -52,9 +55,9 @@ function love.update(dt)
             ball.x = player1.x + 5
 
             if ball.dy < 0 then 
-                ball.dy = -math.random(10,150)
+                ball.dy = -math.random(10, 150)
             else
-                ball.dy = math.random(10,150)
+                ball.dy = math.random(10, 150)
             end
         end
 
