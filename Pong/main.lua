@@ -45,7 +45,7 @@ function love.update(dt)
         else
             ball.dx = -math.random(140, 200)
         end
-        
+
     eleseif gameState == 'play' then 
         if ball:collides(player1) then 
             ball.dx = -ball.dx * 1.03
@@ -84,14 +84,14 @@ function love.update(dt)
         servingPlayer = 1
         player2Score = player2Score + 1
         ball:reset()
-        gameState = 'start'
+        gameState = 'serve'
     end
 
     if ball.x > VIRTUAL_WIDTH then
         servingPlayer = 2
         player1Score = player1Score + 1
         ball:reset()
-        gameState = 'start'
+        gameState = 'serve'
     end
 
     if love.keyboard.isDown('w') then
@@ -124,10 +124,10 @@ function love.keypressed(key)
 
     elseif key == 'enter' or key == 'return' then
         if gameState == 'start' then
+            gameState = 'serve'
+        elseif gameState == 'serve' then
             gameState = 'play'
-        else
-            gameState = 'start'
-            ball:reset()
+
         end
     end
 end
@@ -141,6 +141,7 @@ function love.draw()
 
     if gameState == 'start' then
         love.graphics.printf('Hello Start State', 0, 20, VIRTUAL_WIDTH, 'center')
+        
     else
         love.graphics.printf('Hello Play State!', 0, 20, VIRTUAL_WIDTH, 'center')
     end
