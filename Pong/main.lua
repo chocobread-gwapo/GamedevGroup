@@ -139,16 +139,22 @@ function love.draw()
 
     love.graphics.setFont(smallFont)
 
+    displayScore()
+
     if gameState == 'start' then
-        love.graphics.printf('Hello Start State', 0, 20, VIRTUAL_WIDTH, 'center')
-        
-    else
-        love.graphics.printf('Hello Play State!', 0, 20, VIRTUAL_WIDTH, 'center')
+        love.graphics.setFont(smallFont)
+        love.graphics.printf('Welcome to Pong!', 0, 20, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf("Press Enter to begin", 0, 20, VIRTUAL_WIDTH, 'center')
+    elseif gameState == 'serve' then
+        love.graphics.setFont(smallFont)
+        love.graphics.printf('Player ' .. tostring(servingPlayer) .. "'s serve!", 
+            0, 10, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf("Press Enter to serve", 0, 20, VIRTUAL_WIDTH, 'center')
+    elseif gameState == 'play' then
+        -- no UI messages to display in play
     end
 
-    love.graphics.setFont(scoreFont)
-    love.graphics.print(tostring(player1Score), VIRTUAL_WIDTH / 2 - 50, VIRTUAL_HEIGHT / 3)
-    love.graphics.print(tostring(player2Score), VIRTUAL_WIDTH / 2 + 50, VIRTUAL_HEIGHT / 3)
+    
     player1:render()
     player2:render()
     
@@ -166,3 +172,4 @@ function displayFPS()
     love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 40, 20)
     love.graphics.setColor(1, 1, 1, 1)
 end
+
