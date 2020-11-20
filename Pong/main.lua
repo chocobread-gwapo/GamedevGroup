@@ -20,9 +20,7 @@ function love.load()
     math.randomseed(os.time())
 
     smallFont = love.graphics.newFont('font.TTF', 8)
-
     scoreFont = love.graphics.newFont('font.TTF', 32)
-
     vicoryFont = love.graphics.newFont('font.TTF', 24)
     
     love.graphics.setFont(smallFont)
@@ -45,10 +43,17 @@ function love.load()
     servingPlayer = 1
 
     player1 = Paddle(10, 30, 5, 20)
-    player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 30, 5, 20)
+    player2 = Paddle(VIRTUAL_WIDTH - 15, VIRTUAL_HEIGHT - 50, 5, 20)
     ball = Ball(VIRTUAL_WIDTH / 2 - 2, VIRTUAL_HEIGHT / 2 - 2, 4, 4)
 
-    gameState = 'start'
+    player1Role = nil
+    player2Role = nil
+
+    ballstartingdx = 0
+
+    winningPlayer = 0
+
+    gameState = 'setup'
 end
 
 function love.resize(w, h)
@@ -140,21 +145,48 @@ function love.update(dt)
         end  
     end
 
-
-    if love.keyboard.isDown('w') then
-        player1.dy = -PADDLE_SPEED
-    elseif love.keyboard.isDown('s') then
-        player1.dy = PADDLE_SPEED
+    if player1.computer then
+        if ball.dx < 0 and ball.x + ball.width < VIRTUAL_WIDTH + (ball.dx * 0.7) - 15 then
+            if ball.y < player1.y then
+                player1.dy = -PADDLE_SPEED / 2
+            elseif ball.y + ball.height > player1.y + player1.height then
+                player1.dy = PADDLE_SPEED / 2
+            else
+                player1.dy = 0
+            end
+        else
+            player1.dy = 0
+        end
     else
-        player1.dy = 0
+        if love.keyboard.isDown('w') then
+            player1.dy = -PADDLE_SPEED
+        elseif love.keyboard.isDown('s') then
+            player1.dy = PADDLE_SPEED
+        else
+            player1.dy = 0
+        end
     end
 
-    if love.keyboard.isDown('up') then
-       player2.dy = -PADDLE_SPEED
-    elseif love.keyboard.isDown('down') then
-       player2.dy = PADDLE_SPEED
-    else
-        player2.dy = 0
+    if player2.computer then
+        if ball.dx > 0 and ball.x > (ball.dx * 0.7) + 15 then
+            if ball.y < player2.y then
+                player2.dy = -PADDLE_SPEED / 2
+            elseif ball.y + ball.height > player2.y + player2.height then
+                player2.dy = PADDLE_SPEED / 2
+            else
+                player2.dy = 0
+            end
+        else
+            player2.dy = 0
+        end
+    else    
+        if love.keyboard.isDown('up') then
+            player2.dy = -PADDLE_SPEED
+        elseif love.keyboard.isDown('down') then
+            player2.dy = PADDLE_SPEED
+        else
+            player2.dy = 0
+        end
     end
 
     if gameState == 'play' then
@@ -186,6 +218,49 @@ function love.keypressed(key)
         elseif gameState == 'serve' then
             gameState = 'play'
         end
+
+    elseif key == 'backspace' then
+        gameState = 'setup'
+
+        player1Role = nil
+        player2Role = nil
+
+        ball:reset()
+
+        player1Score = 0
+        player2Score = 0
+
+        servingPlayer = 1
+
+    elseif gameState == 'setup' then
+        if key == 'w' and not player1Role then
+            player1.computer = false
+            player1Role = 'Player 1 is a Human'
+            if player2Role then
+                gameState = 'start'
+            end
+
+        elseif key == 's' and not player1Role then
+            player1.computer = true
+            player1Role = 'Player 1 is a Computer'
+            if player2Role then
+                gameState = 'start'
+            end
+
+        elseif key == 'up' and not player2Role then
+            player2.computer = false
+            player2Role = 'Player 2 is a Human'
+            if player1Role then
+                gameState = 'start'
+            end
+
+        elseif key == 'down' and not player2Role then
+            player2.computer = true
+            player2Role = 'Player 2 is a Computer'
+            if player1Role then
+                gameState = 'start'
+            end
+        end
     end
 end
 
@@ -198,6 +273,8 @@ function love.draw()
     
     displayScore()
 
+    if gameState == 'setup' then
+        
     if gameState == 'start' then
         love.graphics.setFont(smallFont)
         love.graphics.printf("Welcome to Pong!", 0, 20, VIRTUAL_WIDTH, 'center')
