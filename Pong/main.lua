@@ -149,9 +149,9 @@ function love.update(dt)
     if player1.computer then
         if ball.dx < 0 and ball.x + ball.width < VIRTUAL_WIDTH + (ball.dx * 0.7) - 15 then
             if ball.y < player1.y then
-                player1.dy = -PADDLE_SPEED / 2
+                player1.dy = -PADDLE_SPEED / 1.5
             elseif ball.y + ball.height > player1.y + player1.height then
-                player1.dy = PADDLE_SPEED / 2
+                player1.dy = PADDLE_SPEED / 1.5
             else
                 player1.dy = 0
             end
@@ -171,9 +171,9 @@ function love.update(dt)
     if player2.computer then
         if ball.dx > 0 and ball.x > (ball.dx * 0.7) + 15 then
             if ball.y < player2.y then
-                player2.dy = -PADDLE_SPEED / 2
+                player2.dy = -PADDLE_SPEED / 1.5
             elseif ball.y + ball.height > player2.y + player2.height then
-                player2.dy = PADDLE_SPEED / 2
+                player2.dy = PADDLE_SPEED / 1.5
             else
                 player2.dy = 0
             end
