@@ -307,7 +307,7 @@ function love.draw()
         love.graphics.setFont(smallFont)
         love.graphics.printf("Welcome to Pong!", 0, 10, VIRTUAL_WIDTH, 'center')
         love.graphics.printf('Press Enter to begin!', 0, 22, VIRTUAL_WIDTH, 'center')
-        love.graphics.printf('Press Backspace to return to player selection!', 0, 35, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Press Backspace to return to player selection!', 0, 36, VIRTUAL_WIDTH, 'center')
         love.graphics.printf(player1Role, 0, 50, VIRTUAL_WIDTH / 2, 'center')
         love.graphics.printf(player2Role, VIRTUAL_WIDTH / 2, 50, VIRTUAL_WIDTH / 2, 'center')
     
@@ -321,12 +321,12 @@ function love.draw()
 
     elseif gameState == 'victory' then
         love.graphics.setFont(vicoryFont)
-        love.graphics.printf('CONGRATULATIONS!', 0, 17, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('CONGRATULATIONS!', 0, 50, VIRTUAL_WIDTH, 'center')
         love.graphics.setFont(largeFont)
         love.graphics.printf('Player ' .. tostring(winningPlayer) .. ' wins!', 0, 10, VIRTUAL_WIDTH, 'center')
         love.graphics.setFont(smallFont)
-        love.graphics.printf('Press Enter to restart!', 0, 30, VIRTUAL_WIDTH, 'center')
-        love.graphics.printf('Press Backspace to return to player selection!', 0, 40, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Press Enter to restart!', 0, 31, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Press Backspace to return to player selection!', 0, 41, VIRTUAL_WIDTH, 'center')
     end
 
     player1:render()
