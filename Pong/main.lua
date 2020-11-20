@@ -310,7 +310,7 @@ function love.draw()
         love.graphics.printf('Press Backspace to return to player selection!', 0, 35, VIRTUAL_WIDTH, 'center')
         love.graphics.printf(player1Role, 0, 50, VIRTUAL_WIDTH / 2, 'center')
         love.graphics.printf(player2Role, VIRTUAL_WIDTH / 2, 50, VIRTUAL_WIDTH / 2, 'center')
-    end
+    
 
     elseif gameState == 'serve' then
         love.graphics.setFont(smallFont)
