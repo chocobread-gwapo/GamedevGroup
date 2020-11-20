@@ -22,6 +22,7 @@ function love.load()
     smallFont = love.graphics.newFont('font.TTF', 8)
     scoreFont = love.graphics.newFont('font.TTF', 32)
     vicoryFont = love.graphics.newFont('font.TTF', 24)
+    largeFont = love.graphics.newFont('font.TTF', 20)
     
     love.graphics.setFont(smallFont)
 
@@ -274,21 +275,59 @@ function love.draw()
     displayScore()
 
     if gameState == 'setup' then
-        
-    if gameState == 'start' then
         love.graphics.setFont(smallFont)
-        love.graphics.printf("Welcome to Pong!", 0, 20, VIRTUAL_WIDTH, 'center')
-        love.graphics.printf("Press Enter to play!", 0 , 32, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Welcome to Pong!', 0, 10, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Please choose your player type!', 0, 24, VIRTUAL_WIDTH, 'center')
+
+        if player1Role then
+            love.graphics.printf(player1Role, 0, 50, VIRTUAL_WIDTH / 2, 'center')
+        else
+            love.graphics.setFont(smallFont)
+            love.graphics.printf('W', 0, 90, VIRTUAL_WIDTH / 2, 'center')
+            love.graphics.printf('Human', 0, 100, VIRTUAL_WIDTH / 2, 'center')
+            love.graphics.printf('S', 0, 150, VIRTUAL_WIDTH / 2, 'center')
+            love.graphics.printf('Computer', 0, 160, VIRTUAL_WIDTH / 2, 'center')
+            love.graphics.setFont(largeFont)
+            love.graphics.printf('Player 1', 0, 50, VIRTUAL_WIDTH / 2, 'center')
+        end
+
+        love.graphics.setFont(smallFont)
+        if player2Role then
+            love.graphics.printf(player2Role, VIRTUAL_WIDTH / 2, 50, VIRTUAL_WIDTH / 2, 'center')
+        else
+            love.graphics.printf('UP', VIRTUAL_WIDTH / 2, 90, VIRTUAL_WIDTH / 2, 'center')
+            love.graphics.printf('Human', VIRTUAL_WIDTH / 2, 100, VIRTUAL_WIDTH / 2, 'center')
+            love.graphics.printf('DOWN', VIRTUAL_WIDTH / 2, 150, VIRTUAL_WIDTH / 2, 'center')
+            love.graphics.printf('Computer', VIRTUAL_WIDTH / 2, 160, VIRTUAL_WIDTH / 2, 'center')
+            love.graphics.setFont(largeFont)
+            love.graphics.printf('Player 2', VIRTUAL_WIDTH / 2, 50, VIRTUAL_WIDTH / 2, 'center')
+        end
+
+    elseif gameState == 'start' then
+        love.graphics.setFont(smallFont)
+        love.graphics.printf("Welcome to Pong!", 0, 10, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Press Enter to begin!', 0, 22, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Press Backspace to return to player selection!', 0, 35, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf(player1Role, 0, 50, VIRTUAL_WIDTH / 2, 'center')
+        love.graphics.printf(player2Role, VIRTUAL_WIDTH / 2, 50, VIRTUAL_WIDTH / 2, 'center')
+    end
+
     elseif gameState == 'serve' then
         love.graphics.setFont(smallFont)
-        love.graphics.printf("Player ".. tostring(servingPlayer) .. "'s serve!", 0, 10, VIRTUAL_WIDTH, 'center')
-        love.graphics.printf("Press Enter to Serve!", 0 , 20, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Player ' .. tostring(servingPlayer) .. "'s serve!", 0, 10, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Press Enter to serve!', 0, 20, VIRTUAL_WIDTH, 'center')
+
+    elseif gameState == 'play' then
+
     elseif gameState == 'victory' then
         love.graphics.setFont(vicoryFont)
-        love.graphics.printf("Player ".. tostring(winningPlayer) .. " wins!", 0, 10, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('CONGRATULATIONS!', 0, 17, VIRTUAL_WIDTH, 'center')
+        love.graphics.setFont(largeFont)
+        love.graphics.printf('Player ' .. tostring(winningPlayer) .. ' wins!',
+            0, 10, VIRTUAL_WIDTH, 'center')
         love.graphics.setFont(smallFont)
-        love.graphics.printf("Press Enter to Restart!", 0 , 42, VIRTUAL_WIDTH, 'center')
-    elseif gameState == 'play' then
+        love.graphics.printf('Press Enter to restart!', 0, 30, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('Press Backspace to return to player selection!', 0, 40, VIRTUAL_WIDTH, 'center')
     end
 
     player1:render()
