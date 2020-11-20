@@ -35,7 +35,7 @@ function love.load()
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,
-        resizable = false,
+        resizable = true,
         vsync = true
     }) 
 
@@ -44,13 +44,15 @@ function love.load()
 
     servingPlayer = 1
 
-    winningPlayer = 0
-
     player1 = Paddle(10, 30, 5, 20)
     player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 30, 5, 20)
     ball = Ball(VIRTUAL_WIDTH / 2 - 2, VIRTUAL_HEIGHT / 2 - 2, 4, 4)
 
     gameState = 'start'
+end
+
+function love.resize(w, h)
+    push:resize(w, h)
 end
 
 function love.update(dt)
@@ -62,11 +64,14 @@ function love.update(dt)
         else
             ball.dx = -math.random(140, 200)
         end
+
+
+
     elseif gameState == 'play' then
 
         if ball:collides(player1) then
             ball.dx = -ball.dx * 1.03
-            ball.x = player1.x * 5
+            ball.x = player1.x + 5
 
             if ball.dy  < 0 then
                 ball.dy = -math.random(10, 150)
@@ -92,7 +97,6 @@ function love.update(dt)
 
         end
 
-        --
         if ball.y <= 0 then
             ball.y = 0
             ball.dy = -ball.dy
@@ -169,9 +173,16 @@ function love.keypressed(key)
         if gameState == 'start' then
             gameState = 'serve'
         elseif gameState == 'victory' then
-            gameState = 'start'
+            gameState = 'serve'
+            ball:reset()
             player1Score = 0
             player2Score = 0
+
+            if winningPlayer == 1 then
+                servingPlayer = 2
+            else
+                servingPlayer = 1
+            end
         elseif gameState == 'serve' then
             gameState = 'play'
         end
@@ -199,7 +210,7 @@ function love.draw()
         love.graphics.setFont(vicoryFont)
         love.graphics.printf("Player ".. tostring(winningPlayer) .. " wins!", 0, 10, VIRTUAL_WIDTH, 'center')
         love.graphics.setFont(smallFont)
-        love.graphics.printf("Press Enter to Serve!", 0 , 42, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf("Press Enter to Restart!", 0 , 42, VIRTUAL_WIDTH, 'center')
     elseif gameState == 'play' then
     end
 
