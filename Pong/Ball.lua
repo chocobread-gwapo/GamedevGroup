@@ -36,6 +36,6 @@ function Ball:update(dt)
 end
 
 function Ball:render()
-    love.graphics.circle('fill', self.x, self.y, self.width, self.height)
+    love.graphics.circle('fill', self.x, self.y, 4,6)
     
 end
