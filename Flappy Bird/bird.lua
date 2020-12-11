@@ -17,7 +17,6 @@ function Bird:collides(pipe)
             return true
         end
     end
-
     return false
 end
 
@@ -28,7 +27,6 @@ function Bird:update(dt)
         self.dy = -5
         sounds['jump']:play()
     end
-
     self.y = self.y + self.dy
 end
 
