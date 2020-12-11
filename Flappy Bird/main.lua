@@ -30,10 +30,10 @@ function love.load()
     love.window.setTitle('Flappy Ghost!')
 
     smallFont = love.graphics.newFont('font.ttf', 20)
-    mediumFont = love.graphics.newFont('flappy.ttf', 30)
-    flappyFont = love.graphics.newFont('flappy.ttf', 60)
-    largeFont = love.graphics.newFont('flappy.ttf', 64)
-    scoreFont = love.graphics.newFont('flappy.ttf', 50)
+    mediumFont = love.graphics.newFont('halloween.ttf', 30)
+    flappyFont = love.graphics.newFont('halloween.ttf', 60)
+    largeFont = love.graphics.newFont('halloween.ttf', 64)
+    scoreFont = love.graphics.newFont('halloween.ttf', 50)
     love.graphics.setFont(flappyFont)
 
     sounds = {
@@ -110,10 +110,9 @@ function love.draw()
     push:start()
     
     love.graphics.draw(background, -background_scroll, 0)
+    love.graphics.draw(ground, -ground_scroll, VIRTUAL_HEIGHT - 16)
 
     gStateMachine:render()
-
-    love.graphics.draw(ground, -ground_scroll, VIRTUAL_HEIGHT - 16)
     
     push:finish()
 end

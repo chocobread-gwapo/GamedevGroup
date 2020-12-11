@@ -69,11 +69,12 @@ function PlayState:render()
     for k, pair in pairs(self.pipePairs) do
         pair:render()
     end
-    
-    love.graphics.setFont(mediumFont)
-    love.graphics.print('Score: ' .. tostring(self.score), 8, 8)
 
     self.bird:render()
+    
+    love.graphics.setColor(223/255, 113/255, 38/255, 255)
+    love.graphics.setFont(mediumFont)
+    love.graphics.print('Score: ' .. tostring(self.score), 8, 8)
 end
 
 function PlayState:enter()
