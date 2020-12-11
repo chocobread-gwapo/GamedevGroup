@@ -19,6 +19,7 @@ function PipePair:update(dt)
         self.pipes['upper'].x = self.x
     else
         self.remove = true
+        self.scored = false
     end
 end
 
