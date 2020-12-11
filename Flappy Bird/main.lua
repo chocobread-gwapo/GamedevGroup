@@ -31,8 +31,9 @@ function love.load()
 
     smallFont = love.graphics.newFont('font.ttf', 20)
     mediumFont = love.graphics.newFont('halloween.ttf', 30)
+    mediumFont2 = love.graphics.newFont('font.ttf', 30)
     flappyFont = love.graphics.newFont('halloween.ttf', 60)
-    largeFont = love.graphics.newFont('halloween.ttf', 64)
+    largeFont = love.graphics.newFont('halloween.ttf', 100)
     scoreFont = love.graphics.newFont('halloween.ttf', 50)
     love.graphics.setFont(flappyFont)
 
@@ -41,7 +42,10 @@ function love.load()
         ['grave'] = love.audio.newSource('grave.wav', 'static'),
         ['hurt'] = love.audio.newSource('hurt.wav', 'static'),
         ['score'] = love.audio.newSource('score.wav', 'static'),
-        ['music'] = love.audio.newSource('music.wav', 'static')
+        ['music'] = love.audio.newSource('music.wav', 'static'),
+        ['pausemenu'] = love.audio.newSource('pausemenu.wav', 'static'),
+        ['pauseenter'] = love.audio.newSource('pauseenter.wav', 'static'),
+        ['pauseexit'] = love.audio.newSource('pauseexit.wav', 'static')
     }
 
     sounds['music']:setLooping(true)
