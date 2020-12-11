@@ -97,7 +97,7 @@ end
 function love.update(dt)
     if scrolling then
         background_scroll = (background_scroll + background_scroll_spd * dt) % background_loop_point
-        ground_scroll = (ground_scroll + ground_scroll_spd * dt) % ground_loop_point
+        ground_scroll = (ground_scroll + ground_scroll_spd * dt) % VIRTUAL_WIDTH
     end
 
     gStateMachine:update(dt)
