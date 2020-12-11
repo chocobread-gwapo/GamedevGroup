@@ -10,6 +10,7 @@ function PlayState:init()
     self.bird = Bird()
     self.pipePairs = {}
     self.timer = 0
+    self.score = 0
     self.lastY = -PIPE_HEIGHT + math.random(80) + 20
 end
 
