@@ -6,11 +6,12 @@ end
 
 function ScoreState:update(dt)
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
-        gStateMachine:change('play')
+        gStateMachine:change('countdown')
     end
 end
 
 function ScoreState:render()
+    
     love.graphics.setFont(flappyFont)
     love.graphics.printf('Ghostbusted!', 0, 64, VIRTUAL_WIDTH, 'center')
 

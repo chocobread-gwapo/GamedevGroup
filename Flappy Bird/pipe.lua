@@ -2,12 +2,8 @@ Pipe = Class{}
 
 local pipe_img = love.graphics.newImage('pillar.png')
 
-PIPE_SPD = 60
-PIPE_HEIGHT = 288
-PIPE_WIDTH = 70
-
 function Pipe:init(orientation, y)
-    self.x = VIRTUAL_WIDTH
+    self.x = VIRTUAL_WIDTH + 64
     self.y = y
     self.width = pipe_img:getWidth()
     self.height = PIPE_HEIGHT

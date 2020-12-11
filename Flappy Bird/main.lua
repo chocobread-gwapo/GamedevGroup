@@ -22,15 +22,11 @@ local ground_scroll = 0
 local background_scroll_spd = 30
 local ground_scroll_spd = 60
 local background_loop_point = 413
-local ground_loop_point = 514
-local bird = Bird()
-local pipePairs = {}
-local spawnTimer = 0
-local lastY = -PIPE_HEIGHT + math.random(80) + 20
-local scrolling = true
+scrolling = true
 
 function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
+    math.randomseed(os.time())
     love.window.setTitle('Flappy Ghost!')
 
     smallFont = love.graphics.newFont('font.ttf', 20)
@@ -67,6 +63,7 @@ function love.load()
     gStateMachine:change('title')
 
     love.keyboard.keysPressed = {}
+    love.mouse.buttonsPressed = {}
 end
 
 function love.resize(w, h)
@@ -81,6 +78,10 @@ function love.keypressed(key)
     end
 end
 
+function love.mousepressed(x, y, button)
+    love.mouse.buttonsPressed[button] = true
+end
+
 function love.keyboard.wasPressed(key)
     if love.keyboard.keysPressed[key] then
         return true
@@ -89,13 +90,20 @@ function love.keyboard.wasPressed(key)
     end
 end
 
+function love.mouse.wasPressed(button)
+    return love.mouse.buttonsPressed[button]
+end
+
 function love.update(dt)
-    background_scroll = (background_scroll + background_scroll_spd * dt) % background_loop_point
-    ground_scroll = (ground_scroll + ground_scroll_spd * dt) % ground_loop_point
+    if scrolling then
+        background_scroll = (background_scroll + background_scroll_spd * dt) % background_loop_point
+        ground_scroll = (ground_scroll + ground_scroll_spd * dt) % ground_loop_point
+    end
 
     gStateMachine:update(dt)
 
     love.keyboard.keysPressed = {}
+    love.mouse.buttonsPressed = {}
 end
 
 function love.draw()
