@@ -8,7 +8,7 @@ end
 
 function TitleScreenState:render()
     love.graphics.setFont(flappyFont)
-    love.graphics.printf('Flappy Ghost!', 0, 64, virtual_width, 'center')
+    love.graphics.printf('Flappy Ghost!', 0, 64, VIRTUAL_WIDTH, 'center')
     love.graphics.setFont(mediumFont)
-    love.graphics.printf('Hit Enter', 0, 110, virtual_width, 'center')
+    love.graphics.printf('Hit Enter', 0, 110, VIRTUAL_WIDTH, 'center')
 end
