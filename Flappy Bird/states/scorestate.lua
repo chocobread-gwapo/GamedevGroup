@@ -9,7 +9,7 @@ end
 
 function ScoreState:update(dt)
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
-        gStateMachine:change('play')
+        gStateMachine:change('countdown')
     end
 end
 
@@ -29,15 +29,15 @@ function ScoreState:render()
 
     love.graphics.setColor(223/255, 113/255, 38/255, 255)
     love.graphics.setFont(flappyFont)
-    love.graphics.printf('Ghostbusted!', 0, 64, VIRTUAL_WIDTH, 'center')
+    love.graphics.printf('Ghostbusted!', 0, 55, VIRTUAL_WIDTH, 'center')
     love.graphics.setFont(scoreFont)
-    love.graphics.printf('Score: ' .. tostring(self.score), 0, 123, VIRTUAL_WIDTH, 'center')
+    love.graphics.printf('Score: ' .. tostring(self.score), 0, 114, VIRTUAL_WIDTH, 'center')
     love.graphics.setFont(mediumFont)
-    love.graphics.printf('Hit Enter to Play Again!', 0, 175, VIRTUAL_WIDTH, 'center')
+    love.graphics.printf('Hit Enter to Play Again!', 0, 166, VIRTUAL_WIDTH, 'center')
 
     if medal ~= nil then
         love.graphics.setFont(mediumFont2)
-        love.graphics.printf("Congratulations! You've earned a " .. medaltype .. " medal!", 0, 10, virtual_width, 'center')
-        love.graphics.draw(medal, virtual_width / 2 - medal:getWidth() / 2, 200)
+        love.graphics.printf("Congratulations! You've earned a " .. medaltype .. " medal!", 0, 10, VIRTUAL_WIDTH, 'center')
+        love.graphics.draw(medal, VIRTUAL_WIDTH / 2 - medal:getWidth() / 2, 200)
     end
 end

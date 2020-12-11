@@ -96,9 +96,9 @@ function PlayState:render()
 
     if scrolling == false then
         love.graphics.setFont(largeFont)
-        love.graphics.printf('PAUSE', 0, 100, virtual_width, 'center')
+        love.graphics.printf('PAUSE', 0, 75, VIRTUAL_WIDTH, 'center')
         love.graphics.setFont(mediumFont)
-        love.graphics.printf('Hit P to continue', 0, 170, virtual_width, 'center')
+        love.graphics.printf('Hit P to continue', 0, 175, VIRTUAL_WIDTH, 'center')
     end
 end
 

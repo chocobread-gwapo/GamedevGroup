@@ -21,5 +21,5 @@ end
 function CountdownState:render()
     love.graphics.setColor(223/255, 113/255, 38/255, 255)
     love.graphics.setFont(largeFont)
-    love.graphics.printf(tostring(self.count), 0, 120, VIRTUAL_WIDTH, 'center')
+    love.graphics.printf(tostring(self.count), 0, 100, VIRTUAL_WIDTH, 'center')
 end
