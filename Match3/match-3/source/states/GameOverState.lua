@@ -1,59 +1,40 @@
+--[[
+    GD50
+    Match-3 Remake
+
+    Author: Colton Ogden
+    cogden@cs50.harvard.edu
+
+    - GameOverState Class-
+
+    State that simply shows us our score when we finally lose.
+]]
+
 GameOverState = Class{__includes = BaseState}
 
 function GameOverState:init()
-    self.transitionAlpha = 255/255
-    self.board = Board(VIRTUAL_WIDTH - 272, 16)
-    self.levelLabelY = -64
+
 end
 
-function GameOverState:enter(def)
-
-    self.level = def.level
-
-
-    Timer.tween(1, {
-        [self] = {transitionAlpha = 0}
-    })
-
-    :finish(function()
-        Timer.tween(0.25, {
-            [self] = {levelLabelY = VIRTUAL_HEIGHT / 2 - 8}
-        })
-
-        :finish(function()
-            Timer.after(1, function()
- 
-                Timer.tween(0.25, {
-                    [self] = {levelLabelY = VIRTUAL_HEIGHT + 30}
-                })
-          
-                :finish(function()
-                    gStateMachine:change('play', {
-                        level = self.level,
-                        board = self.board
-                    })
-                end)
-            end)
-        end)
-    end)
+function GameOverState:enter(params)
+    self.score = params.score 
 end
 
 function GameOverState:update(dt)
-    Timer.update(dt)
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+        gStateMachine:change('start')
+    end
 end
 
 function GameOverState:render()
-
-    self.board:render()
-
-    love.graphics.setColor(95/255, 205/255, 228/255, 200/255)
-    love.graphics.rectangle('fill', 0, self.levelLabelY - 8, VIRTUAL_WIDTH, 48)
-    love.graphics.setColor(255/255, 255/255, 255/255, 255/255)
     love.graphics.setFont(gFonts['large'])
-    love.graphics.printf('Level ' .. tostring(self.level),
-        0, self.levelLabelY, VIRTUAL_WIDTH, 'center')
 
+    love.graphics.setColor(56/255, 56/255, 56/255, 234/255)
+    love.graphics.rectangle('fill', VIRTUAL_WIDTH / 2 - 64, 64, 128, 136, 4)
 
-    love.graphics.setColor(255/255, 255/255, 255/255, self.transitionAlpha)
-    love.graphics.rectangle('fill', 0, 0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
+    love.graphics.setColor(99/255, 155/255, 255/255, 255/255)
+    love.graphics.printf('GAME OVER', VIRTUAL_WIDTH / 2 - 64, 64, 128, 'center')
+    love.graphics.setFont(gFonts['medium'])
+    love.graphics.printf('Your Score: ' .. tostring(self.score), VIRTUAL_WIDTH / 2 - 64, 140, 128, 'center')
+    love.graphics.printf('Press Enter', VIRTUAL_WIDTH / 2 - 64, 180, 128, 'center')
 end
