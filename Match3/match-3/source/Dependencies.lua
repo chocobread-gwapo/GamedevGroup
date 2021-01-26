@@ -18,7 +18,7 @@ require 'source/states/PlayState'
 require 'source/states/StartState'
 
 gSounds = {
-    ['music'] = love.audio.newSource('sounds/music3.mp3'),
+    ['music'] = love.audio.newSource('sounds/music3.wav'),
     ['select'] = love.audio.newSource('sounds/select.wav'),
     ['error'] = love.audio.newSource('sounds/error.wav'),
     ['match'] = love.audio.newSource('sounds/match.wav'),
