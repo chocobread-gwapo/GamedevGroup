@@ -23,7 +23,7 @@ function love.load()
         ['start'] = function() return StartState() end,
         ['begin-game'] = function() return BeginGameState() end,
         ['play'] = function() return PlayState() end,
-        ['game-over'] = function() return GameOverState() end
+        ['gameover'] = function() return GameOverState() end
     }
     gStateMachine:change('start')
 

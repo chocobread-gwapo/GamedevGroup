@@ -55,7 +55,7 @@ function PlayState:update(dt)
         
         gSounds['game-over']:play()
 
-        gStateMachine:change('game-over', {
+        gStateMachine:change('gameover', {
             score = self.score
         })
     end

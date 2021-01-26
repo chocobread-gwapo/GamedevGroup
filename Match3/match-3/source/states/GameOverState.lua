@@ -1,15 +1,12 @@
-BeginGameState = Class{__includes = BaseState}
+GameOverState = Class{__includes = BaseState}
 
-function BeginGameState:init()
-
+function GameOverState:init()
     self.transitionAlpha = 255/255
-
     self.board = Board(VIRTUAL_WIDTH - 272, 16)
-
     self.levelLabelY = -64
 end
 
-function BeginGameState:enter(def)
+function GameOverState:enter(def)
 
     self.level = def.level
 
@@ -41,14 +38,13 @@ function BeginGameState:enter(def)
     end)
 end
 
-function BeginGameState:update(dt)
+function GameOverState:update(dt)
     Timer.update(dt)
 end
 
-function BeginGameState:render()
+function GameOverState:render()
 
     self.board:render()
-
 
     love.graphics.setColor(95/255, 205/255, 228/255, 200/255)
     love.graphics.rectangle('fill', 0, self.levelLabelY - 8, VIRTUAL_WIDTH, 48)
