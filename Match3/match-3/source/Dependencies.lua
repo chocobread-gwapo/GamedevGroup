@@ -18,13 +18,13 @@ require 'source/states/PlayState'
 require 'source/states/StartState'
 
 gSounds = {
-    ['music'] = love.audio.newSource('sounds/music3.wav'),
-    ['select'] = love.audio.newSource('sounds/select.wav'),
-    ['error'] = love.audio.newSource('sounds/error.wav'),
-    ['match'] = love.audio.newSource('sounds/match.wav'),
-    ['clock'] = love.audio.newSource('sounds/clock.wav'),
-    ['game-over'] = love.audio.newSource('sounds/game-over.wav'),
-    ['next-level'] = love.audio.newSource('sounds/next-level.wav')
+    ['music'] = love.audio.newSource('sounds/music3.wav', 'static'),
+    ['select'] = love.audio.newSource('sounds/select.wav', 'static'),
+    ['error'] = love.audio.newSource('sounds/error.wav', 'static'),
+    ['match'] = love.audio.newSource('sounds/match.wav', 'static'),
+    ['clock'] = love.audio.newSource('sounds/clock.wav', 'static'),
+    ['game-over'] = love.audio.newSource('sounds/game-over.wav', 'static'),
+    ['next-level'] = love.audio.newSource('sounds/next-level.wav', 'static)
 }
 
 gTextures = {
