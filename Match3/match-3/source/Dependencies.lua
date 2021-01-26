@@ -5,17 +5,17 @@ push = require 'lib/push'
 
 Timer = require 'lib/knife.timer'
 
-require 'src/StateMachine'
-require 'src/Util'
+require 'source/StateMachine'
+require 'source/Util'
 
-require 'src/Board'
-require 'src/Tile'
+require 'source/Board'
+require 'source/Tile'
 
-require 'src/states/BaseState'
-require 'src/states/BeginGameState'
-require 'src/states/GameOverState'
-require 'src/states/PlayState'
-require 'src/states/StartState'
+require 'source/states/BaseState'
+require 'source/states/BeginGameState'
+require 'source/states/GameOverState'
+require 'source/states/PlayState'
+require 'source/states/StartState'
 
 gSounds = {
     ['music'] = love.audio.newSource('sounds/music3.mp3'),

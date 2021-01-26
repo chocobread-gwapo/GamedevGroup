@@ -143,23 +143,22 @@ end
 function PlayState:calculateMatches()
     self.highlightedTile = nil
 
-=
     local matches = self.board:calculateMatches()
     
     if matches then
         gSounds['match']:stop()
         gSounds['match']:play()
 
-=
+
         for k, match in pairs(matches) do
             self.score = self.score + #match * 50
         end
-=
+
         self.board:removeMatches()
-=
+
         local tilesToFall = self.board:getFallingTiles()
 
-=
+
         Timer.tween(0.25, tilesToFall):finish(function()
             local newTiles = self.board:getNewTiles()
             
