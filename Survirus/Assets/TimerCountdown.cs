@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerCountdown : MonoBehaviour
 {
@@ -14,14 +15,21 @@ public class TimerCountdown : MonoBehaviour
     {
         textDisplay.GetComponent<Text>().text = "00:"+ secondsLeft;
     }
+
     void Update()
     {
         if (takingAway == false && secondsLeft > 0)
         {
             StartCoroutine(TimerTake());
         }
-
+        else if (secondsLeft ==  0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
+
+
+
     IEnumerator TimerTake()
     {
         takingAway = true;
