@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthbarController : MonoBehaviour
 {
@@ -13,6 +14,14 @@ public class HealthbarController : MonoBehaviour
     {
         health = health - damage;
         healthBar.fillAmount = health / startHealth;
+    }
+
+    void Update()
+    {
+        if (health == 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
 }
