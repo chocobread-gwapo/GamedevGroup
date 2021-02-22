@@ -7,9 +7,10 @@ function GenerateTileQuads(atlas)
 
     local counter = 1
 
-   
+
     for row = 1, 9 do
-       
+        
+
         for i = 1, 2 do
             tiles[counter] = {}
             

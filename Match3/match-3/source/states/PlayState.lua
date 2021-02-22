@@ -42,6 +42,13 @@ function PlayState:enter(params)
     self.score = params.score or 0
 
     self.scoreGoal = self.level * 1.25 * 1000
+
+    while not self.board:matchExists() do
+        print("Enter: Reshuffling the board")
+        self.board = nil
+        self.board = Board(VIRTUAL_WIDTH - 272, 16, self.level)
+    end
+
 end
 
 function PlayState:update(dt)
@@ -52,10 +59,10 @@ function PlayState:update(dt)
     if self.timer <= 0 then
 
         Timer.clear()
-        
+
         gSounds['game-over']:play()
 
-        gStateMachine:change('gameover', {
+        gStateMachine:change('game-over', {
             score = self.score
         })
     end
@@ -93,7 +100,7 @@ function PlayState:update(dt)
 
             local x = self.boardHighlightX + 1
             local y = self.boardHighlightY + 1
-            
+
             if not self.highlightedTile then
                 self.highlightedTile = self.board.tiles[y][x]
 
@@ -115,21 +122,45 @@ function PlayState:update(dt)
                 newTile.gridX = tempX
                 newTile.gridY = tempY
 
-
                 self.board.tiles[self.highlightedTile.gridY][self.highlightedTile.gridX] =
                     self.highlightedTile
 
                 self.board.tiles[newTile.gridY][newTile.gridX] = newTile
 
+                if not self.board:calculateMatches() then
 
-                Timer.tween(0.1, {
-                    [self.highlightedTile] = {x = newTile.x, y = newTile.y},
-                    [newTile] = {x = self.highlightedTile.x, y = self.highlightedTile.y}
-                })
+                    local tempX = newTile.gridX
+                    local tempY = newTile.gridY
 
-                :finish(function()
-                    self:calculateMatches()
-                end)
+                    newTile.gridX = self.highlightedTile.gridX
+                    newTile.gridY = self.highlightedTile.gridY
+                    self.highlightedTile.gridX = tempX
+                    self.highlightedTile.gridY = tempY
+
+                    self.board.tiles[self.highlightedTile.gridY][self.highlightedTile.gridX] =
+                        self.highlightedTile
+
+                    self.board.tiles[newTile.gridY][newTile.gridX] = newTile
+
+                    self.highlightedTile = nil
+                    gSounds['error']:play()
+                else
+
+                    Timer.tween(0.1, {
+                        [self.highlightedTile] = {x = newTile.x, y = newTile.y},
+                        [newTile] = {x = self.highlightedTile.x, y = self.highlightedTile.y}
+                    })
+                    :finish(function()
+                        self:calculateMatches()
+                    end)
+                end
+
+
+                while not self.board:matchExists() do
+                    self.board = nil
+                    self.board = Board(VIRTUAL_WIDTH - 272, 16, self.level)
+                end
+
             end
         end
     end
@@ -137,14 +168,11 @@ function PlayState:update(dt)
     Timer.update(dt)
 end
 
-
-
-
 function PlayState:calculateMatches()
     self.highlightedTile = nil
 
     local matches = self.board:calculateMatches()
-    
+
     if matches then
         gSounds['match']:stop()
         gSounds['match']:play()
@@ -152,22 +180,21 @@ function PlayState:calculateMatches()
 
         for k, match in pairs(matches) do
             self.score = self.score + #match * 50
+            self.timer = self.timer + #match
         end
 
         self.board:removeMatches()
+
 
         local tilesToFall = self.board:getFallingTiles()
 
 
         Timer.tween(0.25, tilesToFall):finish(function()
-            local newTiles = self.board:getNewTiles()
-            
 
-            Timer.tween(0.25, newTiles):finish(function()
+            self:calculateMatches()
 
-                self:calculateMatches()
-            end)
         end)
+
 
     else
         self.canInput = true
