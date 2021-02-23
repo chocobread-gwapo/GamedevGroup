@@ -1,6 +1,6 @@
 PipePair = Class{}
 
-local GAP_HEIGHT = 98
+local GAP_HEIGHT = 90
 
 function PipePair:init(y)
     self.scored = false
@@ -8,7 +8,7 @@ function PipePair:init(y)
     self.y = y
     self.pipes = {
         ['upper'] = Pipe('top', self.y),
-        ['lower'] = Pipe('bottom', self.y + PIPE_HEIGHT + GAP_HEIGHT)
+        ['lower'] = Pipe('bottom', self.y + PIPE_HEIGHT + math.random(GAP_HEIGHT - 5, GAP_HEIGHT + 30))
     }
     self.remove = false
 end
