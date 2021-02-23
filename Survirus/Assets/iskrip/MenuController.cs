@@ -2,13 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public Dropdown resolutionDropdown;
+
+    Resolution[] resolutions;
+
     void Start()
     {
-        
+        resolutions = Screen.resolutions;
+
+        resolutionDropdown.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        int currentResolutionIndex = 0;
+        for (int i=0; i<resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+
     }
 
     // Update is called once per frame
@@ -16,6 +44,10 @@ public class MenuController : MonoBehaviour
     {
         
     }
+    public GameObject settingsMenuHolder;
+    public GameObject mainMenuHolder;
+
+    public Slider[] volumeSliders;
 
     public void StartGame()
     {
@@ -37,5 +69,51 @@ public class MenuController : MonoBehaviour
         Application.Quit();
         Debug.Log("Quit!");
     }
+
+    public void SettingsMenu()
+    {
+        mainMenuHolder.SetActive(false);
+        settingsMenuHolder.SetActive(true);
+    }
+
+    public void MainMenu()
+    {
+        mainMenuHolder.SetActive(true);
+        settingsMenuHolder.SetActive(false);
+    }
+
+    public void SetResolution (int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
+    }
+    public void SetFullscreen(bool fullscreen)
+    {
+        Screen.fullScreen = fullscreen;
+        if (Screen.fullScreen)
+        {
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        }
+    }
+
+    public void SetMasterVolume(float value)
+    {
+       
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        
+    }
+
+    public void SetSfxVolume(float value)
+    {
+        
+    }
+
 }
 
