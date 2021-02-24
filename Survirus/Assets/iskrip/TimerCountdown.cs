@@ -6,14 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class TimerCountdown : MonoBehaviour
 {
-
     public GameObject textDisplay;
-    public int secondsLeft = 30;
+    public Slider slider;
+    public int secondsLeft;
     public bool takingAway = false;
 
-    private void Start()
+    void Start()
     {
-        textDisplay.GetComponent<Text>().text = "00:"+ secondsLeft;
+        slider.maxValue = secondsLeft;
+        slider.value = secondsLeft;
+
+        int minutes = secondsLeft / 60;
+        int seconds = secondsLeft - minutes * 60;
+        textDisplay.GetComponent<Text>().text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     void Update()
@@ -22,20 +27,36 @@ public class TimerCountdown : MonoBehaviour
         {
             StartCoroutine(TimerTake());
         }
-        else if (secondsLeft ==  0)
+
+        if (secondsLeft == 0)
         {
             SceneManager.LoadScene("GameOver");
         }
     }
-
-
 
     IEnumerator TimerTake()
     {
         takingAway = true;
         yield return new WaitForSeconds(1);
         secondsLeft -= 1;
-        textDisplay.GetComponent<Text>().text = "00:"+ secondsLeft;
+        if (secondsLeft >= 60)
+        {
+            takingAway = false;
+            int minutes = Mathf.FloorToInt(secondsLeft / 60);
+            int seconds = Mathf.FloorToInt(secondsLeft - minutes * 60);
+            textDisplay.GetComponent<Text>().text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        else if (secondsLeft < 10)
+        {
+            int seconds = secondsLeft;
+            textDisplay.GetComponent<Text>().text = string.Format("00:0" + seconds);
+        }
+        else
+        {
+            int seconds = secondsLeft;
+            textDisplay.GetComponent<Text>().text = string.Format("00:" + seconds);
+        }
+        slider.value = secondsLeft;
         takingAway = false;
     }
 }
