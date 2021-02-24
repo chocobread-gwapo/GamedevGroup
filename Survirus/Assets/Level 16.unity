@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03970063, g: 0.072617464, b: 0.12497378, a: 1}
+  m_IndirectSpecularColor: {r: 0.039700285, g: 0.07261673, b: 0.12497366, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1225,6 +1225,7 @@ GameObject:
   - component: {fileID: 362381655}
   - component: {fileID: 362381654}
   - component: {fileID: 362381653}
+  - component: {fileID: 362381656}
   m_Layer: 0
   m_Name: COVID (1)
   m_TagString: COVID
@@ -1308,6 +1309,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362381651}
   m_Mesh: {fileID: 289301614986012343, guid: 93f821d24fa66a7489a4424f2f38fa99, type: 3}
+--- !u!114 &362381656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362381651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &372010383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7992442834815449993, guid: f6208658c4d45bf5c944dd7806489932, type: 3}
@@ -1325,6 +1338,7 @@ GameObject:
   - component: {fileID: 389471051}
   - component: {fileID: 389471050}
   - component: {fileID: 389471049}
+  - component: {fileID: 389471052}
   m_Layer: 0
   m_Name: COVID (4)
   m_TagString: COVID
@@ -1408,6 +1422,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389471047}
   m_Mesh: {fileID: 289301614986012343, guid: 93f821d24fa66a7489a4424f2f38fa99, type: 3}
+--- !u!114 &389471052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389471047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &423485710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1808271603589002604, guid: 411d79dbbe4633332bf08419508ecdd1, type: 3}
@@ -2174,6 +2200,7 @@ GameObject:
   - component: {fileID: 734502650}
   - component: {fileID: 734502649}
   - component: {fileID: 734502648}
+  - component: {fileID: 734502651}
   m_Layer: 0
   m_Name: COVID (3)
   m_TagString: COVID
@@ -2257,6 +2284,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734502646}
   m_Mesh: {fileID: 289301614986012343, guid: 93f821d24fa66a7489a4424f2f38fa99, type: 3}
+--- !u!114 &734502651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734502646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &764164928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,9 +2325,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2af71aac72639d45b0f8508901bd903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textDisplay: {fileID: 1901493009}
-  secondsLeft: 400
-  takingAway: 0
+  slider: {fileID: 0}
+  timerText: {fileID: 0}
+  gameTime: 0
 --- !u!4 &764164930
 Transform:
   m_ObjectHideFlags: 0
@@ -2751,6 +2790,7 @@ GameObject:
   - component: {fileID: 879895845}
   - component: {fileID: 879895844}
   - component: {fileID: 879895843}
+  - component: {fileID: 879895846}
   m_Layer: 0
   m_Name: COVID (2)
   m_TagString: COVID
@@ -2834,6 +2874,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879895841}
   m_Mesh: {fileID: 289301614986012343, guid: 93f821d24fa66a7489a4424f2f38fa99, type: 3}
+--- !u!114 &879895846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879895841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &880195999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4655,6 +4707,7 @@ GameObject:
   - component: {fileID: 1559571531}
   - component: {fileID: 1559571530}
   - component: {fileID: 1559571529}
+  - component: {fileID: 1559571532}
   m_Layer: 0
   m_Name: COVID
   m_TagString: COVID
@@ -4738,6 +4791,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559571527}
   m_Mesh: {fileID: 289301614986012343, guid: 93f821d24fa66a7489a4424f2f38fa99, type: 3}
+--- !u!114 &1559571532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559571527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1559859661
 GameObject:
   m_ObjectHideFlags: 0
