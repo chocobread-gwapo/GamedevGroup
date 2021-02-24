@@ -12,10 +12,10 @@ end
 
 
 function PlayState:enter(params)
-    self.level = LevelMaker.generate(level_width, 10)  
+
+    self.level = LevelMaker.generate(self.level_width or 50, 10) 
     self.tileMap = self.level.tileMap
    
-
     self.player = Player({
         x = 0, y = 0,
         width = 16, height = 20,
@@ -28,9 +28,8 @@ function PlayState:enter(params)
         },
         map = self.tileMap,
         level = self.level,
-        
     })
-    level_complete = self.level_complete or false
+
     if params then
         self.player.score = params.score
     end
@@ -77,10 +76,6 @@ function PlayState:render()
         love.graphics.draw(gTextures[self.player.key_obj.texture], gFrames[self.player.key_obj.texture][self.player.key_obj.frame], 5, 20)
     end
 
-    if self.player.level_complete then 
-        self.player:renderlevel_complete()
-    end
-
 ----------------------------------------------------
     
     love.graphics.setFont(gFonts['medium'])
@@ -88,6 +83,7 @@ function PlayState:render()
     love.graphics.print(tostring(self.player.score), 5, 5)
     love.graphics.setColor(255, 255, 255, 255)
     love.graphics.print(tostring(self.player.score), 4, 4)
+    
     
 end
 

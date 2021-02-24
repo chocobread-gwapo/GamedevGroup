@@ -41,8 +41,14 @@ function LevelMaker.generate(width, height)
 
         if math.random(7) == 1 then
             for y = 7, height do 
-                table.insert(tiles[y],
-                    Tile(x, y, tileID, nil, tileset, topperset))
+                if x == width - 1 and x == width - 2 then
+                    tileID = tile_id_ground
+                    table.insert(tiles[y],
+                Tile(x, y, tileID, nil, tileset, topperset))
+                else
+                    tileID = tile_id_empty
+                table.insert(tiles[y], Tile(x, y, tileID, nil, tileset, topperset))
+                end
             end
         else
             tileID = tile_id_ground
@@ -56,6 +62,7 @@ function LevelMaker.generate(width, height)
 
             if math.random(8) == 1 then
                 block_height = 2 
+                
                 if math.random(8) == 1 then
                     table.insert(objects,
                         GameObject {
@@ -147,13 +154,13 @@ function LevelMaker.generate(width, height)
 
     local spawned = false
     while not spawned do
-        local xPos = math.random(1, width)
+        local xPos = math.random(1, width - 10)
         if tiles[height][xPos].id == tile_id_ground then
             local block_height
             if tiles[ground_height][xPos].id == tile_id_empty then  
-                block_height = ground_height - 2
+                block_height = ground_height - 1
             elseif tiles[pillar_height][xPos].id == tile_id_empty then
-                block_height = pillar_height - 2
+                block_height = pillar_height - 1
             end
             
             local lock = getkey_lock_base(lock_id, block_height, xPos, key_lock_color)
@@ -221,7 +228,7 @@ function getkey_lock_base(key_or_lock, block_height, x, key_lock_color)
     return {
         texture = 'keys-locks',
         x = (x - 1) * tile_size,
-        y = (block_height - 1) * tile_size - 3,
+        y = (block_height - 2) * tile_size,
         width = 16,
         height = 16,
 
@@ -300,11 +307,8 @@ function generateflag_post(width, flag_post_color, xPos, yPos, pole_type)
         onConsume = function(player, object)
             gSounds['pickup']:play()
             player.score = player.score + 300 
-            
             gStateMachine:change('play', {
-                level_width = width + 25,
-                score = player.score,
-                level_complete = true  
+                score = player.score
             })
         end
     }

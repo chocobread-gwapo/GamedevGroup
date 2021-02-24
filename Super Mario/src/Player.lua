@@ -4,11 +4,6 @@ function Player:init(def)
     Entity.init(self, def)
     self.score = def.score or 0
     self.key_obj = nil
-    self.level_complete = def.level_complete
-    
-    if self.level_complete then
-        Timer.after(4, function() self.level_complete = false end)
-    end
 end
 
 function Player:update(dt)
@@ -19,13 +14,6 @@ function Player:render()
     Entity.render(self)
 end
 
-function Player:renderlevel_complete()
-    love.graphics.setFont(gFonts['medium'])
-    love.graphics.setColor(0, 0, 0, 255)
-    love.graphics.printf("Level Complete!!", 0, 5, virtual_width, 'center')
-    love.graphics.setColor(255, 255, 255, 255)
-    love.graphics.printf("Level Complete!!", 0, 4, virtual_width - 1, 'center')
-end
 
 function Player:checkLeftCollisions(dt)
     local tileTopLeft = self.map:pointToTile(self.x + 1, self.y + 1)
