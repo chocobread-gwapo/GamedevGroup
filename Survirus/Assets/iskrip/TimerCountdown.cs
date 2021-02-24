@@ -6,42 +6,57 @@ using UnityEngine.SceneManagement;
 
 public class TimerCountdown : MonoBehaviour
 {
+    public GameObject textDisplay;
     public Slider slider;
-    public Text timerText;
-    public float gameTime;
-
-    private bool stopTimer;
+    public int secondsLeft;
+    public bool takingAway = false;
 
     void Start()
     {
-        stopTimer = false;
-        slider.maxValue = gameTime;
-        slider.value = gameTime;
+        slider.maxValue = secondsLeft;
+        slider.value = secondsLeft;
+
+        int minutes = secondsLeft / 60;
+        int seconds = secondsLeft - minutes * 60;
+        textDisplay.GetComponent<Text>().text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     void Update()
     {
-        float time = gameTime - Time.time;
-
-        int minutes = Mathf.FloorToInt(time / 60);
-        int seconds = Mathf.FloorToInt(time - minutes * 60f);
-
-        string textTime = string.Format("{0:00}:{1:00}", minutes, seconds);
-
-        if (time <= 0)
+        if (takingAway == false && secondsLeft > 0)
         {
-            stopTimer = true;
+            StartCoroutine(TimerTake());
         }
 
-        if (stopTimer == false)
-        {
-            timerText.text = textTime;
-            slider.value = time;
-        }
-
-        if (timerText.text == "00:00")
+        if (secondsLeft == 0)
         {
             SceneManager.LoadScene("GameOver");
         }
+    }
+
+    IEnumerator TimerTake()
+    {
+        takingAway = true;
+        yield return new WaitForSeconds(1);
+        secondsLeft -= 1;
+        if (secondsLeft >= 60)
+        {
+            takingAway = false;
+            int minutes = Mathf.FloorToInt(secondsLeft / 60);
+            int seconds = Mathf.FloorToInt(secondsLeft - minutes * 60);
+            textDisplay.GetComponent<Text>().text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        else if (secondsLeft < 10)
+        {
+            int seconds = secondsLeft;
+            textDisplay.GetComponent<Text>().text = string.Format("00:0" + seconds);
+        }
+        else
+        {
+            int seconds = secondsLeft;
+            textDisplay.GetComponent<Text>().text = string.Format("00:" + seconds);
+        }
+        slider.value = secondsLeft;
+        takingAway = false;
     }
 }
