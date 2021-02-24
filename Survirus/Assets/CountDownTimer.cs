@@ -6,8 +6,8 @@ using TMPro;
 public class CountDownTimer : MonoBehaviour
 {
     [SerializeField] float startTime = 5f;
+    [SerializeField] Slider slider1;
     [SerializeField] TextMeshProUGUI timerText1;
-    [SerializeField] TextMeshProUGUI timerText2;
 
     float timer1 = 0f;
 
@@ -24,6 +24,7 @@ public class CountDownTimer : MonoBehaviour
         do
         {
             timer1 -= Time.deltaTime;
+            slider1.value = timer1 / startTime;
             FormatText1();
             yield return null;
         }
