@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MenuController : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public AudioMixer audioMixer;
     public Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
@@ -100,19 +101,9 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void SetMasterVolume(float value)
+    public void SetVolume(float volume)
     {
-       
-    }
-
-    public void SetMusicVolume(float value)
-    {
-        
-    }
-
-    public void SetSfxVolume(float value)
-    {
-        
+        audioMixer.SetFloat("Volume", volume);
     }
 
 }
