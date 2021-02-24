@@ -6,36 +6,42 @@ using UnityEngine.SceneManagement;
 
 public class TimerCountdown : MonoBehaviour
 {
+    public Slider slider;
+    public Text timerText;
+    public float gameTime;
 
-    public GameObject textDisplay;
-    public int secondsLeft = 30;
-    public bool takingAway = false;
+    private bool stopTimer;
 
-    private void Start()
+    void Start()
     {
-        textDisplay.GetComponent<Text>().text = "00:"+ secondsLeft;
+        stopTimer = false;
+        slider.maxValue = gameTime;
+        slider.value = gameTime;
     }
 
     void Update()
     {
-        if (takingAway == false && secondsLeft > 0)
+        float time = gameTime - Time.time;
+
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time - minutes * 60f);
+
+        string textTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        if (time <= 0)
         {
-            StartCoroutine(TimerTake());
+            stopTimer = true;
         }
-        else if (secondsLeft ==  0)
+
+        if (stopTimer == false)
+        {
+            timerText.text = textTime;
+            slider.value = time;
+        }
+
+        if (timerText.text == "00:00")
         {
             SceneManager.LoadScene("GameOver");
         }
-    }
-
-
-
-    IEnumerator TimerTake()
-    {
-        takingAway = true;
-        yield return new WaitForSeconds(1);
-        secondsLeft -= 1;
-        textDisplay.GetComponent<Text>().text = "00:"+ secondsLeft;
-        takingAway = false;
     }
 }
