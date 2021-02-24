@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4824233, g: 0.5273446, b: 0.59651905, a: 1}
+  m_IndirectSpecularColor: {r: 0.48237967, g: 0.5273084, b: 0.59649855, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1020,7 +1020,6 @@ GameObject:
   - component: {fileID: 418593248}
   - component: {fileID: 418593247}
   - component: {fileID: 418593246}
-  - component: {fileID: 418593249}
   m_Layer: 0
   m_Name: COVID
   m_TagString: COVID
@@ -1104,18 +1103,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418593244}
   m_Mesh: {fileID: 289301614986012343, guid: 93f821d24fa66a7489a4424f2f38fa99, type: 3}
---- !u!114 &418593249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418593244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &423394012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,7 +2700,6 @@ GameObject:
   - component: {fileID: 1297737856}
   - component: {fileID: 1297737855}
   - component: {fileID: 1297737854}
-  - component: {fileID: 1297737857}
   m_Layer: 0
   m_Name: COVID
   m_TagString: COVID
@@ -2797,18 +2783,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297737852}
   m_Mesh: {fileID: 289301614986012343, guid: 93f821d24fa66a7489a4424f2f38fa99, type: 3}
---- !u!114 &1297737857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297737852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1346396660
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,7 +3075,6 @@ GameObject:
   - component: {fileID: 1478227420}
   - component: {fileID: 1478227419}
   - component: {fileID: 1478227418}
-  - component: {fileID: 1478227421}
   m_Layer: 0
   m_Name: COVID
   m_TagString: COVID
@@ -3185,18 +3158,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478227416}
   m_Mesh: {fileID: 289301614986012343, guid: 93f821d24fa66a7489a4424f2f38fa99, type: 3}
---- !u!114 &1478227421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478227416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1478280945
 GameObject:
   m_ObjectHideFlags: 0
@@ -3782,7 +3743,6 @@ GameObject:
   - component: {fileID: 2025526301}
   - component: {fileID: 2025526300}
   - component: {fileID: 2025526299}
-  - component: {fileID: 2025526302}
   m_Layer: 0
   m_Name: COVID
   m_TagString: COVID
@@ -3866,18 +3826,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025526297}
   m_Mesh: {fileID: 289301614986012343, guid: 93f821d24fa66a7489a4424f2f38fa99, type: 3}
---- !u!114 &2025526302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025526297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2027665164
 GameObject:
   m_ObjectHideFlags: 0
@@ -4199,9 +4147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2af71aac72639d45b0f8508901bd903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
-  timerText: {fileID: 0}
-  gameTime: 0
+  textDisplay: {fileID: 1397525375}
+  secondsLeft: 180
+  takingAway: 0
 --- !u!4 &2112501273
 Transform:
   m_ObjectHideFlags: 0

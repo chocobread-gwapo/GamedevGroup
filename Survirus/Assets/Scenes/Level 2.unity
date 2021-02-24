@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.47985864, g: 0.5240599, b: 0.5936572, a: 1}
+  m_IndirectSpecularColor: {r: 0.47985876, g: 0.5240601, b: 0.5936572, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -842,7 +842,6 @@ GameObject:
   - component: {fileID: 418828894}
   - component: {fileID: 418828893}
   - component: {fileID: 418828892}
-  - component: {fileID: 418828896}
   m_Layer: 0
   m_Name: COVID (1)
   m_TagString: COVID
@@ -926,18 +925,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &418828896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418828891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &437825268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,9 +1347,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2af71aac72639d45b0f8508901bd903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
-  timerText: {fileID: 0}
-  gameTime: 0
+  textDisplay: {fileID: 903415018}
+  secondsLeft: 40
+  takingAway: 0
 --- !u!4 &707967070
 Transform:
   m_ObjectHideFlags: 0
@@ -2762,7 +2749,6 @@ GameObject:
   - component: {fileID: 1608501354}
   - component: {fileID: 1608501353}
   - component: {fileID: 1608501352}
-  - component: {fileID: 1608501356}
   m_Layer: 0
   m_Name: COVID
   m_TagString: COVID
@@ -2846,18 +2832,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1608501356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608501351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b024448462a9548a92b23eaf05ed27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1631110649
 GameObject:
   m_ObjectHideFlags: 0
