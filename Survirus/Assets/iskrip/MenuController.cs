@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     public AudioMixer audioMixer;
     public Dropdown resolutionDropdown;
+    //public static bool Game_Is_Paused = false;
 
     Resolution[] resolutions;
 
@@ -43,10 +44,18 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }*/
     }
     public GameObject settingsMenuHolder;
     public GameObject mainMenuHolder;
+    //public GameObject pauseMenuHolder;
 
     public Slider[] volumeSliders;
 
@@ -55,10 +64,10 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("Level 1");
     }
 
-    public void Restart()
+    /*public void Restart()
     {
         SceneManager.LoadScene("Level 1");
-    }
+    }*/
 
     public void StartMenu()
     {
@@ -73,15 +82,40 @@ public class MenuController : MonoBehaviour
 
     public void SettingsMenu()
     {
-        mainMenuHolder.SetActive(false);
         settingsMenuHolder.SetActive(true);
+        mainMenuHolder.SetActive(false);
+        //pauseMenuHolder.SetActive(false);
     }
 
     public void MainMenu()
     {
         mainMenuHolder.SetActive(true);
         settingsMenuHolder.SetActive(false);
+        //pauseMenuHolder.SetActive(false);
     }
+
+    /*public void Pause_Menu()
+    {
+        mainMenuHolder.SetActive(false);
+        settingsMenuHolder.SetActive(false);
+        pauseMenuHolder.SetActive(true); 
+    }
+
+    public void Resume()
+    {
+        //pauseMenuUI.SetActive(false);
+        pauseMenuHolder.SetActive(false);
+        Time.timeScale = 1f;
+        Game_Is_Paused = false;
+    }
+
+    void Pause()
+    {
+        //pauseMenuUI.SetActive(true);
+        pauseMenuHolder.SetActive(true);
+        Time.timeScale = 0f;
+        Game_Is_Paused = true;
+    }*/
 
     public void SetResolution (int resolutionIndex)
     {
