@@ -64,10 +64,10 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("Level 1");
     }
 
-    /*public void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene("Level 1");
-    }*/
+    }
 
     public void StartMenu()
     {
