@@ -6,23 +6,33 @@ using UnityEngine.UI;
 
 public class StartUpLoading : MonoBehaviour
 {
-    [SerializeField]
-    private Image progressBar;
+    public GameObject loadingScreenObj;
+    public Slider slider;
 
-    // Start is called before the first frame update
-    void Start()
+    AsyncOperation async;
+
+    public void Start()
     {
-        StartCoroutine(LoadAsyncOperation());
+        StartCoroutine(loadingScreen());
     }
 
-    IEnumerator LoadAsyncOperation()
+    IEnumerator loadingScreen()
     {
-        AsyncOperation nextScene = SceneManager.LoadSceneAsync("StartMenu");
+        loadingScreenObj.SetActive(true);
+        async = SceneManager.LoadSceneAsync("StartMenu");
+        async.allowSceneActivation = false;
 
-        while (nextScene.progress < 1)
+        while (async.isDone == false)
         {
-            progressBar.fillAmount = nextScene.progress;
-            yield return new WaitForEndOfFrame();
+            slider.value = async.progress;
+
+            if (async.progress == 0.9f)
+            {
+                slider.value = 1f;
+                async.allowSceneActivation = true;
+            }
+
+            yield return null;
         }
     }
 }
