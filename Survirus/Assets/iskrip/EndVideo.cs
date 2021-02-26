@@ -22,7 +22,7 @@ public class EndVideo : MonoBehaviour
         if (currentTime == time)
         {
             StartCoroutine(WaitSeconds());
-            SceneManager.LoadScene("StartMenu");
+            SceneManager.LoadScene("Credits");
         }
     }
 
