@@ -131,7 +131,7 @@ public class MenuController : MonoBehaviour
         }
         else
         {
-            Screen.fullScreenMode = FullScreenMode.Windowed;
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
         }
     }
 
