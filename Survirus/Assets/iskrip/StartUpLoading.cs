@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class StartUpLoading : MonoBehaviour
 {
     public GameObject loadingScreenObj;
-    public Slider slider;
 
     AsyncOperation async;
 
@@ -24,11 +23,9 @@ public class StartUpLoading : MonoBehaviour
 
         while (async.isDone == false)
         {
-            slider.value = async.progress;
 
             if (async.progress == 0.9f)
             {
-                slider.value = 1f;
                 async.allowSceneActivation = true;
             }
 
