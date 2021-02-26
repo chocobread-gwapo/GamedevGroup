@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TimerCountdown : MonoBehaviour
 {
-    public GameObject textDisplay;
+    public TextMeshProUGUI textDisplay;
     public Slider slider;
     public int secondsLeft;
     public bool takingAway = false;
@@ -18,7 +19,7 @@ public class TimerCountdown : MonoBehaviour
 
         int minutes = secondsLeft / 60;
         int seconds = secondsLeft - minutes * 60;
-        textDisplay.GetComponent<Text>().text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        textDisplay.GetComponent<TextMeshProUGUI>().text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     void Update()
@@ -44,17 +45,17 @@ public class TimerCountdown : MonoBehaviour
             takingAway = false;
             int minutes = Mathf.FloorToInt(secondsLeft / 60);
             int seconds = Mathf.FloorToInt(secondsLeft - minutes * 60);
-            textDisplay.GetComponent<Text>().text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            textDisplay.GetComponent<TextMeshProUGUI>().text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
         else if (secondsLeft < 10)
         {
             int seconds = secondsLeft;
-            textDisplay.GetComponent<Text>().text = string.Format("00:0" + seconds);
+            textDisplay.GetComponent<TextMeshProUGUI>().text = string.Format("00:0" + seconds);
         }
         else
         {
             int seconds = secondsLeft;
-            textDisplay.GetComponent<Text>().text = string.Format("00:" + seconds);
+            textDisplay.GetComponent<TextMeshProUGUI>().text = string.Format("00:" + seconds);
         }
         slider.value = secondsLeft;
         takingAway = false;

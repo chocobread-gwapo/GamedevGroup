@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using TMPro;
 
 public class MenuController : MonoBehaviour
 {
     // Start is called before the first frame update
     public AudioMixer audioMixer;
-    public Dropdown resolutionDropdown;
+    public TMP_Dropdown resolutionDropdown;
     //public static bool Game_Is_Paused = false;
 
     Resolution[] resolutions;
@@ -23,9 +24,10 @@ public class MenuController : MonoBehaviour
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
-        for (int i=0; i<resolutions.Length; i++)
+
+        for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
+            string option = resolutions[i].width + "x" + resolutions[i].height;
             options.Add(option);
 
             if (resolutions[i].width == Screen.currentResolution.width &&
@@ -38,7 +40,6 @@ public class MenuController : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-
     }
 
     // Update is called once per frame
@@ -125,8 +126,14 @@ public class MenuController : MonoBehaviour
     public void SetResolution (int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
+
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+
     public void SetFullscreen(bool fullscreen)
     {
         Screen.fullScreen = fullscreen;
