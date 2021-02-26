@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
    
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (Input.GetButtonDown("Cancel"))
         {
@@ -35,12 +35,12 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    /*void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
-    }*/
+    }
 
     public void LoadMenu()
     {
