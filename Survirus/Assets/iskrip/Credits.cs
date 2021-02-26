@@ -12,7 +12,7 @@ public class Credits : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitSeconds());
-        time = gameObject.GetComponent<VideoPlayer>().clip.length;
+        time = gameObject.GetComponent<VideoPlayer>().clip.length - 0.04;
     }
 
     void Update()
